@@ -1,0 +1,28 @@
+form {
+    display: flex;
+    width: 500px;
+    padding: 20px;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 30px;
+    align-items: center;
+    border: 1px solid white;
+}
+
+.formGroup {
+    width: 90%;
+    /* border: 1px solid white; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+input {
+    width: 100%;
+}
+
+.submitGroup {
+    text-align: right;
+    width: 90%;
+}
