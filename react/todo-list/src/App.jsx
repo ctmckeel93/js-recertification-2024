@@ -12,8 +12,8 @@ function App() {
     return (
         <>
             <TodoForm setTodos={setTodos}/>
-            {todos.map((todo, i) => (
-              <Todo key={i} todo={todo} index={i} setTodos={setTodos}/>
+            {todos.length > 0 && todos.map((todo) => (
+              <Todo key={todo.id} todo={todo} setTodos={setTodos}/>
             ))}
         </>
     );

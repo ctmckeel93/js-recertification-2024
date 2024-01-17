@@ -3,6 +3,7 @@ import { useState } from "react";
 const TodoForm = ({setTodos}) => {
 
     const initialTodo = {
+        id: crypto.randomUUID(),
         value: "",
         checked: false
     }

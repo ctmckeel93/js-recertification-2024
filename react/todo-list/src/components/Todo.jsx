@@ -1,21 +1,37 @@
 import { useState } from "react";
 
-const Todo = ({todo, index, setTodos}) => {
+const Todo = (props) => {
 
-    const [currentTodo, setCurrentTodo] = useState(todo);
+    const {todo,setTodos} = props;
+    const [todoStyle, setTodoStyle] = useState("none");
     const handleCheck = (e) => {
-        e.preventDefault();
-        setCurrentTodo({...currentTodo, checked: !currentTodo.checked});
-        // setTodos(prevState => {
-        //     const todosCopy = structuredClone(prevState);
-        //     todosCopy[index] = {...todo, checked: !todo.checked};
-        //     return todosCopy;
-        // })
+        setTodoStyle(e.target.checked ? "line-through": "none")
+        setTodos(prevState => {
+            const updatedTodos = prevState.map((t) => {
+                if (t.id === todo.id) {
+                    t.checked = e.target.checked
+                }
+                return t;
+            })
+            return updatedTodos;
+        })
+    }
+
+    const deleteTodo = () => {
+
+        if (todo.checked) {
+            setTodos(prevState => {
+                return prevState.filter(t => t.id !== todo.id); 
+            })
+        } else {
+            alert("You must complete this task before deleting")
+        } 
     }
     return (
         <div>
-            <input onChange={handleCheck} type="checkbox" checked={currentTodo.checked} />
-            <span>{currentTodo.value}</span>
+            <input id="todo" name="todo"  onChange={handleCheck} type="checkbox" checked={todo.checked} />
+            <label style={{textDecoration: todoStyle}} htmlFor="todo">{todo.value}</label>
+            <button onClick={deleteTodo}>Delete</button>
         </div>
     )
 }
